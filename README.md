@@ -8,7 +8,7 @@ A bench-style function generator built on a **Gowin GW1NR-9 FPGA (Tang Nano 9K)*
 |---|---|
 | <img src="docs/images/pcb.jpg" width="380" alt="Wave generator PCB with FPGA, LCD, buttons and DAC"> | <img src="docs/images/lcd.jpg" width="380" alt="LCD showing Sqr 5010.0 Hz with a cursor under the selected digit"> |
 
-Built as my Independent Study Project for the Advanced Computer Engineering program at Royal St. George's College (2026).
+A personal project: I designed the Verilog, the Arduino front panel and the custom PCB myself.
 
 ---
 
