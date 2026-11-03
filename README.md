@@ -150,7 +150,7 @@ The port is named `pwm_out` for historical reasons. It's a parallel 10-bit bus, 
 │   └── wave_generator_ui/
 │       └── wave_generator_ui.ino   # buttons, LCD, sends the 32-bit frame
 ├── tools/
-│   └── gen_sine_rom.py       # regenerates src/sin.v
+│   └── gen_sine_rom.py       # generates the sine table values
 └── docs/images/
 ```
 
@@ -174,9 +174,9 @@ The port is named `pwm_out` for historical reasons. It's a parallel 10-bit bus, 
 
 **Regenerating the sine table**
 ```bash
-python tools/gen_sine_rom.py   # run from the repo root; rewrites src/sin.v
+python tools/gen_sine_rom.py
 ```
-Change `ADDR_BITS` or `DATA_BITS` in the script to change the table's size or bit depth.
+This writes `sine_init.txt`, one `memory[i] = 10'h...;` line per entry. Paste those lines into the `initial begin` block of `src/sin.v`. Change `num_samples` to change the table size.
 
 ---
 
