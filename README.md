@@ -109,6 +109,23 @@ The mux output feeds one channel of a **TLC7226** quad 8-bit DAC. The DAC is pow
 
 ---
 
+## Results
+
+| Front panel in action | 5 kHz sine, DC → AC switch |
+|:---:|:---:|
+| <img src="docs/images/demo_ui.gif" width="300" alt="Breadboard prototype: pressing buttons cycles Sqr, Saw, Sine and steps the frequency"> | <img src="docs/images/scope_sine_ac_dc.gif" width="300" alt="Oscilloscope showing a 5 kHz sine moving from 0 to 10 V to about plus or minus 5 V"> |
+| Cycling through the wave shapes, then stepping the frequency up one digit at a time on the breadboard prototype. | A 5 kHz sine of about 10 V peak-to-peak. Flipping the output switch moves it from 0 to 10 V (DC) to about ±5 V (AC). |
+
+### The speed limit: the DAC
+
+| 50 kHz square wave | ~200 kHz test signal |
+|:---:|:---:|
+| <img src="docs/images/scope_50khz_square.jpg" width="300" alt="Scope: 50.28 kHz square wave with sloped edges"> | <img src="docs/images/scope_200khz_slew.jpg" width="300" alt="Scope: 201 kHz signal with slow, slanted edges forming a trapezoid"> |
+
+The frequency is accurate: the scope measures **50.28 kHz** for the 50 kHz setting, matching the 50.29 kHz the [frequency math](#frequency-math) predicts. At high frequencies, though, the waves get *slanted*. The FPGA changes its output almost instantly, but the TLC7226 is a slow DAC: it's rated for about 143,000 updates per second, with a 5 µs settling time. On the scope, a full 4 V edge takes about 1.5–2 µs. At 50 kHz that already gives the square wave visibly sloped sides, and at around 200 kHz the edges take up most of each cycle, turning the wave into a trapezoid. That's why the front panel stops at 50 kHz. A faster DAC would push the limit much higher.
+
+---
+
 ## Hardware
 
 | Part | Role |
@@ -189,6 +206,7 @@ For each of the 8192 addresses, the script finds the matching fraction of 2π, t
 
 ## Possible improvements
 
+- Use a faster DAC (or an R-2R ladder with a high-speed op-amp buffer) to remove the slanted edges and raise the 50 kHz limit.
 - Send the DAC all 10 bits, or use a 10-bit DAC, so the extra resolution isn't wasted.
 - Add a check that rejects incomplete frames, and pass the new step safely between the two clock domains.
 - Store only a quarter of the sine wave and mirror it, which cuts the table to a quarter of its size.
