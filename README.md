@@ -172,11 +172,11 @@ The port is named `pwm_out` for historical reasons. It's a parallel 10-bit bus, 
 - **Digit** button (A1): moves the `^` cursor to the next digit.
 - **+1** button (A2): increases the selected digit by one, from 0.1 Hz up to the 10 kHz place, with a 50 kHz maximum.
 
-**Regenerating the sine table**
+**Generating the sine table**
 ```bash
 python tools/gen_sine_rom.py
 ```
-This writes `sine_init.txt`, one `memory[i] = 10'h...;` line per entry. Paste those lines into the `initial begin` block of `src/sin.v`. Change `num_samples` to change the table size.
+For each of the 8192 addresses, the script finds the matching fraction of 2π, takes its sine and scales it to a 28-bit fixed-point value. Negative values wrap around 2²⁸ (two's complement). It then writes each value as a Verilog array line to `sine_init.txt`, ready to paste into the module. The final table in `src/sin.v` uses the same idea, scaled down to 10 bits and centred at 512 to match the DAC. Change `num_samples` to change the table size.
 
 ---
 
