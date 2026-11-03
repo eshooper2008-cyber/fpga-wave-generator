@@ -1,0 +1,16 @@
+# Gowin IDE build output and project state
+impl/
+*.gprj.user
+*.log
+*.rpt.txt
+*.timing_paths
+
+# Simulation output
+*.vcd
+*.out
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+__pycache__/
