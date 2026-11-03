@@ -127,10 +127,8 @@ The mux output feeds one channel of a **TLC7226** quad 8-bit DAC. The DAC is pow
 | `start_pin` (CS) | 36 | From Arduino D4 |
 | `data_pin` (MOSI) | 37 | From Arduino D6 |
 | `clk_pin` (SCLK) | 38 | From Arduino D7 |
-| `pwm_out[9:2]` | 70–77 | 8-bit sample to the DAC |
-| `pwm_out[1:0]` | 49, 48 | Low 2 bits |
-
-The port is named `pwm_out` for historical reasons. It's a parallel 10-bit bus, not PWM.
+| `DAC_pins[9:2]` | 70–77 | 8-bit sample to the DAC |
+| `DAC_pins[1:0]` | 49, 48 | Low 2 bits |
 
 ---
 

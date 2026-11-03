@@ -3,7 +3,7 @@ module top (
     input  wire       start_pin,
     input  wire       data_pin,
     input  wire       clk_pin,
-    output wire [9:0] pwm_out
+    output wire [9:0] DAC_pins
 );
 
 wire HIGHSPEEDclk;
@@ -54,7 +54,7 @@ waveform_selector selector_inst (
     .triangle_in(triangle_out),
     .sawtooth_in(sawtooth_out),
     .square_in(square_out),
-    .waveform_out(pwm_out)
+    .waveform_out(DAC_pins)
 );
 
 endmodule
