@@ -185,7 +185,7 @@ This writes `sine_init.txt`, one `memory[i] = 10'h...;` line per entry. Paste th
 - **Thinking in hardware, not software.** An FPGA isn't a microcontroller running steps in order. It's a chip you rewire into exactly the circuit you need, with every module running at the same time.
 - **Modular design.** Each block has clear inputs and outputs and is wired up in `top.v`, the same way you'd chain chips on a breadboard, except each chip can be rewritten in seconds.
 - **DDS and fixed-point maths.** Picking the accumulator width and step format so that one step works out to about 0.1 Hz meant neither the Arduino nor the FPGA needed any arithmetic.
-- **Generating code with scripts.** Writing a 200 KB lookup table by hand is impossible, but a 20-line Python script makes it in under a second.
+- **Generating code with scripts.** Writing a 200 KB lookup table by hand is impossible, but a short Python script makes it in under a second.
 - **Mixed-voltage design:** bringing 5 V logic down to 3.3 V inputs, and building a mid-rail reference to get a bipolar output from a single 12 V supply.
 - **PCB bring-up.** On the first board, I put an ATmega328P directly on the PCB to program over ISP, but I could never upload code to it reliably. Most likely the ISP, reset or power wiring was wrong, so that board revision had to be redone.
 
